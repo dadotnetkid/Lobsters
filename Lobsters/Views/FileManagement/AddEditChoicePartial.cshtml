@@ -1,0 +1,60 @@
+﻿@model Choices
+<div class="row">
+    <div class="col-lg-4">
+        @{
+            Html.DevExpress().TextBoxFor(m => m.ChoiceLetter, settings =>
+            {
+                settings.Width = Unit.Percentage(100);
+                settings.Width = Unit.Percentage(100); settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Left;
+                settings.Properties.Caption = "Choice Letter";
+
+            }).GetHtml();
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4">
+        @{
+            Html.DevExpress().TextBoxFor(m => m.Choice, settings =>
+            {
+                settings.Width = Unit.Percentage(100);
+                settings.Width = Unit.Percentage(100); settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Left;
+                settings.Properties.Caption = "Choice";
+      
+            }).GetHtml();
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4">
+        @{
+            Html.DevExpress().ComboBoxFor(m => m.RedirectQuestionId, settings =>
+            {
+                settings.Width = Unit.Percentage(100);
+                settings.Width = Unit.Percentage(100); settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Left;
+                settings.Properties.Caption = "RedirectQuestionId";
+                settings.Properties.TextField = "Question";
+                settings.Properties.ValueField= "Id";
+            }).BindList(new UnitOfWork().QuestionsRepo.Get()).GetHtml();
+        }
+    </div>
+</div>
+<div class="row margin-top-10">
+    <div class="col-lg-4">
+        @{
+            Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnSubmit";
+                settings.Text = "Submit";
+                settings.ClientSideEvents.Click = "function(s,e){ChoicesGridView.UpdateEdit()}";
+            }).GetHtml();
+            Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnCancel";
+                settings.Text = "Cancel";
+                settings.ClientSideEvents.Click = "function(s,e){ChoicesGridView.CancelEdit()}";
+            }).GetHtml();
+        }
+
+    </div>
+</div>

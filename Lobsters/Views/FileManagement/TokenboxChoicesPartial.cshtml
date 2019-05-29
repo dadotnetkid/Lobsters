@@ -1,0 +1,24 @@
+﻿@{
+    Html.DevExpress().TokenBox(settings =>
+    {
+        settings.Name = "choicesList";
+        settings.Width = Unit.Percentage(100); settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Left;
+        settings.Properties.Caption = "Choice List";
+        settings.Properties.TextField = "Choice";
+        settings.Properties.ValueField = "Id";
+        settings.CallbackRouteValues = new { Controller = "FileManager", Action = "TokenboxChoicesPartial" };
+        settings.Init = (s, e) =>
+        {
+            var choiceList = Model as List<Choices>;
+            var tkb = s as MVCxTokenBox;
+            if (choiceList != null)
+            {
+                foreach (var i in choiceList)
+                {
+                    tkb?.Tokens.Add(i.Choice);
+                }
+            }
+        };
+
+    }).BindList(ViewBag.ChoiceList).GetHtml();
+}

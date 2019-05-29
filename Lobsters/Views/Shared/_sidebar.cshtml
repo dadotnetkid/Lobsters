@@ -1,0 +1,39 @@
+﻿@*<p>@ViewContext.RouteData.Values["Controller"].ToString()</p>*@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="@(ControllerServices.IsControllerName("Home") ? "active" : "")">
+                <a href="@Url.Action("Index", "Home")"><i class="icon icon-gauge"></i> <span>Dash Board</span></a>
+
+
+            <li class="@("treeview " + (ControllerServices.IsControllerName("filemanagement") ? "menu-open active" : ""))">
+                <a href="">
+                    <i class="fa fa-file"></i> <span>File Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@( ControllerServices.IsActionName("campaigns")? "active" : "")">
+                        <a href="@Url.Action("campaigns", "filemanagement")"><i class="fa fa-circle-o"></i> <span>Campaigns</span></a>
+                    </li>
+                    <li class="@( ControllerServices.IsActionName("questions")? "active" : "")">
+                        <a href="@Url.Action("questions", "filemanagement")"><i class="fa fa-circle-o"></i> <span>Questions</span></a>
+                    </li>
+                    <li class="@( ControllerServices.IsActionName("Choices")? "active" : "")">
+                        <a href="@Url.Action("Choices", "filemanagement")"><i class="fa fa-circle-o"></i> <span>Choices</span></a>
+                    </li>
+                </ul>
+            </li>
+
+            
+
+            
+            
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

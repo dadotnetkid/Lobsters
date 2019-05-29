@@ -1,0 +1,42 @@
+﻿@model Campaigns
+<div class="row">
+    <div class="col-lg-4">
+        @{
+            Html.DevExpress().TextBoxFor(m => m.Campaign, settings =>
+               {
+                   settings.Width = Unit.Percentage(100);
+                   settings.Properties.Caption = "Campaign";
+                   settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Left;
+               }).GetHtml();
+        }
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4">
+        @{
+            Html.RenderAction("TokenboxQuestionsPartial",new{campaignId=Model?.Id});
+        }
+
+    </div>
+</div>
+
+<div class="row margin-top-10">
+    <div class="col-lg-4">
+        @{
+            Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnSubmit";
+                settings.Text = "Submit";
+                settings.ClientSideEvents.Click = "function(s,e){CampaignsGridView.UpdateEdit()}";
+            }).GetHtml();
+            Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnCancel";
+                settings.Text = "Cancel";
+                settings.ClientSideEvents.Click = "function(s,e){CampaignsGridView.CancelEdit()}";
+            }).GetHtml();
+        }
+
+    </div>
+</div>

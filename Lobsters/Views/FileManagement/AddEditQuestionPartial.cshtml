@@ -1,0 +1,41 @@
+﻿@model Questions
+<div class="row">
+    <div class="col-lg-4">
+        @{
+            Html.DevExpress().TextBoxFor(m => m.Question, settings =>
+            {
+                settings.Width = Unit.Percentage(100);
+                settings.Width = Unit.Percentage(100); settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Left;
+                settings.Properties.Caption = "Question";
+            }).GetHtml();
+            
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4">
+        @{
+            Html.RenderAction("TokenboxChoicesPartial", new {questionId=Model?.Id});
+
+        }
+    </div>
+</div>
+<div class="row margin-top-10">
+    <div class="col-lg-4">
+        @{
+            Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnSubmit";
+                settings.Text = "Submit";
+                settings.ClientSideEvents.Click = "function(s,e){QuestionGridView.UpdateEdit()}";
+            }).GetHtml();
+            Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btnCancel";
+                settings.Text = "Cancel";
+                settings.ClientSideEvents.Click = "function(s,e){QuestionGridView.CancelEdit()}";
+            }).GetHtml();
+        }
+
+    </div>
+</div>

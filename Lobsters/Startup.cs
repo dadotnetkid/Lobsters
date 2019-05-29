@@ -8,7 +8,7 @@ namespace Lobsters
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            Models.Startups.Authentication.ConfigureAuth(app);
         }
     }
 }

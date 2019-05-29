@@ -1,0 +1,21 @@
+﻿
+@{
+    Html.DevExpress().TokenBox(settings =>
+    {
+        settings.Width = Unit.Percentage(100); settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Left;
+        settings.Properties.Caption = "Questions List";
+        settings.Properties.TextField = "Question";
+        settings.Properties.ValueField = "Id";
+        settings.CallbackRouteValues = new {Controller = "FileManagement", Action = "TokenboxQuestionsPartial"};
+        settings.Name = "QuestionsList";
+
+
+        settings.Init = (s, e) =>
+        {
+            var tkb = s as MVCxTokenBox;
+            if(ViewBag.QuestionsInCampaign is List<Questions> question)
+                foreach (var i in question)
+                    tkb.Tokens.Add(i.Question);
+        };
+    }).BindList(Model).GetHtml();
+}
